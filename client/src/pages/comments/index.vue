@@ -1,10 +1,10 @@
 <template>
-  <div>Books</div>
+  <div>Comments</div>
   <router-link to="/">Home</router-link>
   <div>
     <ul>
-      <li v-for="book in books" :key="book.id">
-        {{ book.title }}
+      <li v-for="comment in comments" :key="comment.id">
+        {{ comment.text }}
       </li>
     </ul>
   </div>
@@ -15,14 +15,14 @@ import { ref } from "vue"
 import { supabase } from "@/lib/supabaseClient."
 import type { Tables } from "../../../database/types"
 
-const books = ref<Tables<"books">[] | null>(null)
+const comments = ref<Tables<"comments">[] | null>(null)
 ;(async () => {
-  const { data, error } = await supabase.from("books").select("*")
+  const { data, error } = await supabase.from("comments").select("*")
   if (error) {
     console.log(error)
     return
   }
-  books.value = data
+  comments.value = data
 })()
 </script>
 
