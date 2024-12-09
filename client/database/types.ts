@@ -19,6 +19,7 @@ export type Database = {
           genre: string[]
           id: number
           num_comments: number | null
+          slug: string
           title: string
           year: number
         }
@@ -31,6 +32,7 @@ export type Database = {
           genre?: string[]
           id?: never
           num_comments?: number | null
+          slug: string
           title: string
           year: number
         }
@@ -43,6 +45,7 @@ export type Database = {
           genre?: string[]
           id?: never
           num_comments?: number | null
+          slug?: string
           title?: string
           year?: number
         }

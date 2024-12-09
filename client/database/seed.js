@@ -1,22 +1,25 @@
-import { faker } from "@faker-js/faker"
-import { createClient } from "@supabase/supabase-js"
+import { faker } from '@faker-js/faker'
+import { createClient } from '@supabase/supabase-js'
 
 const supabase = createClient(process.env.VITE_SUPABASE_URL, process.env.SERVICE_ROLE_KEY)
 
 const seedBooks = async (numEntries) => {
   const books = []
   for (let i = 0; i < numEntries; i++) {
+    const title = faker.book.title(3)
     books.push({
-      title: faker.book.title(),
+      title: title,
+      slug: title.toLowerCase().replace(/ /g, '-'),
       author: faker.book.author(),
       description: faker.lorem.paragraph(),
-      genre: faker.helpers.arrayElements(["triller", "horror"]),
+      genre: faker.helpers.arrayElements(['triller', 'horror']),
       year: faker.number.int({ min: 2008, max: 2024 }),
-      cover: faker.image.urlLoremFlickr({ category: "book" }),
+      cover: faker.image.urlLoremFlickr({ category: 'book' }),
     })
   }
-  const { data, error } = await supabase.from("books").insert(books).select("id")
+  const { data, error } = await supabase.from('books').insert(books).select('id')
   if (error) console.log(error)
+  console.log(data)
   return data
 }
 
@@ -24,12 +27,12 @@ const seedComments = async (numEntries, projectsIds) => {
   const comments = []
   for (let i = 0; i < numEntries; i++) {
     comments.push({
-      rating: 4.5,
+      rating: faker.number.float({ min: 1, max: 5 }),
       text: faker.lorem.paragraph(),
       book_id: faker.helpers.arrayElement(projectsIds),
     })
   }
-  const { data, error } = await supabase.from("comments").insert(comments).select("id")
+  const { data, error } = await supabase.from('comments').insert(comments).select('id')
   if (error) console.log(error)
   return data
 }

@@ -5,6 +5,7 @@ create table
         id bigint primary key generated always as identity not null,
         created_at timestamptz default now() not null,
         title text unique not null,
+        slug text unique not null,
         author text not null,
         description text not null,
         genre text array default array[]::text[] not null,
