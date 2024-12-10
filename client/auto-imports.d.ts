@@ -60,6 +60,8 @@ declare global {
   const useBooksStore: typeof import('./src/stores/books')['useBooksStore']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
+  const useErrorStore: typeof import('./src/stores/errors')['useErrorStore']
+  const useErrorsStore: typeof import('./src/stores/errors')['useErrorsStore']
   const useId: typeof import('vue')['useId']
   const useLink: typeof import('vue-router')['useLink']
   const useModel: typeof import('vue')['useModel']

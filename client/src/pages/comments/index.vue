@@ -1,29 +1,27 @@
 <script setup lang="ts">
-  import { commentsWithBooksQuery, type CommentsWithBooks } from '@/utils/supaQueries'
-  import { commentsColumns } from '@/utils/tableColumns/commentsColumns'
+	import { commentsWithBooksQuery, type CommentsWithBooks } from '@/utils/supaQueries'
+	import { commentsColumns } from '@/utils/tableColumns/commentsColumns'
 
-  useBooksStore().books.title = 'Comments'
+	useBooksStore().books.title = 'Comments'
 
-  const comments = ref<CommentsWithBooks | null>(null)
+	const comments = ref<CommentsWithBooks | null>(null)
 
-  const getComments = async () => {
-    const { data, error } = await commentsWithBooksQuery
+	const getComments = async () => {
+		const { data, error, status } = await commentsWithBooksQuery
+		if (error) console.log(error, status)
 
-    if (error) {
-      console.log(error)
-      return
-    }
-    comments.value = data
-  }
+		if (error) useErrorsStore().setError({ error, customCode: status })
+		comments.value = data
+	}
 
-  await getComments()
+	await getComments()
 </script>
 
 <template>
-  <div>
-    <DataTable
-      v-if="comments"
-      :columns="commentsColumns"
-      :data="comments" />
-  </div>
+	<div>
+		<DataTable
+			v-if="comments"
+			:columns="commentsColumns"
+			:data="comments" />
+	</div>
 </template>

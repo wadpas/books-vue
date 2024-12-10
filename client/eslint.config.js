@@ -1,26 +1,19 @@
-import pluginVue from "eslint-plugin-vue"
-import vueTsEslintConfig from "@vue/eslint-config-typescript"
-import skipFormatting from "@vue/eslint-config-prettier/skip-formatting"
+import pluginVue from 'eslint-plugin-vue'
+import vueTsEslintConfig from '@vue/eslint-config-typescript'
+import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 
 export default [
   {
-    name: "app/files-to-lint",
-    files: ["**/*.{ts,mts,tsx,vue}"],
+    extends: ['airbnb', 'prettier', 'plugin:node/recommended'],
+    plugins: ['prettier'],
+    rules: {
+      'prettier/prettier': 'error',
+      'no-unused-vars': 'warn',
+      'no-console': 'off',
+      'func-names': 'off',
+      'no-process-exit': 'off',
+      'object-shorthand': 'off',
+      'class-methods-use-this': 'off',
+    },
   },
-
-  {
-    name: "app/files-to-ignore",
-    ignores: ["**/dist/**", "**/dist-ssr/**", "**/coverage/**"],
-  },
-  {
-    "vue/multi-word-component-names": [
-      "error",
-      {
-        ignores: [],
-      },
-    ],
-  },
-  ...pluginVue.configs["flat/essential"],
-  ...vueTsEslintConfig(),
-  skipFormatting,
 ]

@@ -16,26 +16,25 @@ export const booksQuery = supabase.from('books').select(`*`)
 export type Books = QueryData<typeof booksQuery>
 
 export const bookQuery = (slug: string) =>
-  supabase
-    .from('books')
-    .select(
-      `
+	supabase
+		.from('books')
+		.select(
+			`
   *,
   comments (
    *
   )
   `
-    )
-    .eq('slug', slug)
-    .single()
-
+		)
+		.eq('slug', slug)
+		.single()
 export type Book = QueryData<ReturnType<typeof bookQuery>>
 
 export const commentQuery = (id: string) =>
-  supabase
-    .from('comments')
-    .select(
-      `
+	supabase
+		.from('comments')
+		.select(
+			`
   *,
   books (
    id,
@@ -43,8 +42,7 @@ export const commentQuery = (id: string) =>
    title
   )
   `
-    )
-    .eq('id', id)
-    .single()
-
+		)
+		.eq('id', id)
+		.single()
 export type Comment = QueryData<ReturnType<typeof commentQuery>>
