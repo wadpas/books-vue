@@ -24,5 +24,7 @@ declare module 'vue-router/auto-routes' {
     '/books/[slug]': RouteRecordInfo<'/books/[slug]', '/books/:slug', { slug: ParamValue<true> }, { slug: ParamValue<false> }>,
     '/comments/': RouteRecordInfo<'/comments/', '/comments', Record<never, never>, Record<never, never>>,
     '/comments/[id]': RouteRecordInfo<'/comments/[id]', '/comments/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    '/login': RouteRecordInfo<'/login', '/login', Record<never, never>, Record<never, never>>,
+    '/register': RouteRecordInfo<'/register', '/register', Record<never, never>, Record<never, never>>,
   }
 }

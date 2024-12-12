@@ -9,7 +9,6 @@ export const commentsWithBooksQuery = supabase.from('comments').select(`
     title
     )
   `)
-
 export type CommentsWithBooks = QueryData<typeof commentsWithBooksQuery>
 
 export const booksQuery = supabase.from('books').select(`*`)
@@ -46,3 +45,6 @@ export const commentQuery = (id: string) =>
 		.eq('id', id)
 		.single()
 export type Comment = QueryData<ReturnType<typeof commentQuery>>
+
+export const profileQuery = (id: string) =>
+	supabase.from('profiles').select(`*`).eq('id', id).single()
