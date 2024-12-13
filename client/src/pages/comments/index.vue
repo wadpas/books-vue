@@ -2,8 +2,6 @@
 	import { commentsWithBooksQuery, type CommentsWithBooks } from '@/utils/supaQueries'
 	import { commentsColumns } from '@/utils/tableColumns/commentsColumns'
 
-	useBooksStore().books.title = 'Comments'
-
 	const comments = ref<CommentsWithBooks | null>(null)
 
 	const getComments = async () => {
@@ -19,9 +17,6 @@
 
 <template>
 	<div>
-		<DataTable
-			v-if="comments"
-			:columns="commentsColumns"
-			:data="comments" />
+		<DataTable v-if="comments" :columns="commentsColumns" :data="comments" />
 	</div>
 </template>

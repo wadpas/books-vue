@@ -15,7 +15,7 @@ export const register = async (formData: RegisterForm) => {
 		const { error } = await supabase.from('profiles').insert({
 			id: data.user.id,
 			username: formData.username,
-			full_name: formData.firstName.concat(' ', formData.firstName),
+			full_name: formData.firstName.concat(' ', formData.lastName),
 		})
 		if (error) {
 			console.log(error)

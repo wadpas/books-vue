@@ -46,5 +46,5 @@ export const commentQuery = (id: string) =>
 		.single()
 export type Comment = QueryData<ReturnType<typeof commentQuery>>
 
-export const profileQuery = (id: string) =>
-	supabase.from('profiles').select(`*`).eq('id', id).single()
+export const profileQuery = ({ column, value }: { column: string; value: string }) =>
+	supabase.from('profiles').select(`*`).eq(column, value).single()
